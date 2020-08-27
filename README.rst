@@ -8,22 +8,7 @@ run against already opened sockets.
 That makes Chaussette the best companion to run a WSGI or Django_ stack
 under a process and socket manager, such as Circus_.
 
-.. image:: https://travis-ci.org/circus-tent/chaussette.svg?branch=master
-   :alt: Build Status
-   :target: https://secure.travis-ci.org/circus-tent/chaussette/
-
-.. image:: https://coveralls.io/repos/circus-tent/chaussette/badge.svg?branch=master
-   :alt: Coverage Status on master
-   :target: https://coveralls.io/r/circus-tent/chaussette?branch=master
-
-.. image:: https://img.shields.io/pypi/v/chaussette.svg
-   :target: https://python.org/pypi/chaussette/
-
-.. image:: https://img.shields.io/pypi/dm/chaussette.svg
-   :target: https://python.org/pypi/chaussette/
-
-.. image:: http://allmychanges.com/p/python/chaussette/badge/
-   :target: http://allmychanges.com/p/python/chaussette/?utm_source=badge
+Since bjoern_ already support python 3, I trivially made the bjoern backend available for both python 2 and python 3.
 
 
 Quick Start
@@ -33,68 +18,30 @@ Running:
 
 .. code-block:: bash
 
-   chaussette
+   chaussette --backend bjoern bjoern-test.app.application
 
-starts a very simple HTTP sample server on port 8080.  
-
-
-Starting a WSGI application using chaussette is simply a matter of calling:
+starts a very simple HTTP sample server on port 8080, and you should see "Damn!" with:
 
 .. code-block:: bash
 
-   chaussette examples.tornadoapp.wsgiapp
+   curl localhost:8080
 
-Chaussette can also serve tornado (non WSGI) application:
-
-.. code-block:: bash
-
-   chaussette --backend tornado examples.tornadoapp.tornadoapp
-
-The `simple_chat` example can be started as:
-
-.. code-block:: bash
-
-   chaussette --backend socketio examples.simple_chat.chat.app
-
-Note that the two previous examples are not backend agnostic, since
-they are not (pure) WSGI applications.
-
-A flask_ based pure WSGI application can be started with most
-backends:
-
-.. code-block:: bash
-
-   chaussette --backend gevent examples.flaskapp.app
-
-
-In these examples, we start a standalone WSGI server, but the spirit of
-chaussette is to be managed by Circus_, as described
-https://chaussette.readthedocs.io/en/latest/#using-chaussette-in-circus
-
-   
 Links
 -----
 
-- The full documentation is located at: https://chaussette.readthedocs.io
-- You can reach us for any feedback, bug report, or to contribute, at
+- The original repo is located at
   https://github.com/circus-tent/chaussette
 
 .. _Circus: https://circus.readthedocs.io
 .. _Django: https://docs.djangoproject.com
-.. _flask: http://flask.pocoo.org/
-
+.. _bjoern: https://github.com/jonashaag/bjoern#why-its-cool
 
 Changelog
 ---------
 
-1.3.0 - 2015-06-01
+1.3.0 - 2020-08-27
 ~~~~~~~~~~~~~~~~~~
 
-- Fix gevent monkey patching (pull request #67).
-- Add a "--graceful-timeout" option (for gevent-based backends).
-- Fix the tornado backend so that it accepts tornado's WSGIApplication
-  instaces.
-- Update documentation.
-- Improve example applications.
+- Add bjoern backend for python 3.
 
 
