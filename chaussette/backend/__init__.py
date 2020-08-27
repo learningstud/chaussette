@@ -36,6 +36,12 @@ try:
 except ImportError:
     pass
 
+try:
+    from chaussette.backend import _bjoern
+    _backends['bjoern'] = _bjoern.Server
+except ImportError:
+    pass
+
 PY3 = sys.version_info[0] == 3
 
 if not PY3:
@@ -65,13 +71,6 @@ if not PY3:
         _backends['socketio'] = _socketio.Server
     except ImportError:
         pass
-
-    try:
-        from chaussette.backend import _bjoern
-        _backends['bjoern'] = _bjoern.Server
-    except ImportError:
-        pass
-
 
 def register(name, server):
     _backends[name] = server

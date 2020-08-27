@@ -30,13 +30,13 @@ tests_require = ['nose', 'waitress', 'tornado',
                  'requests', 'minimock']
 
 if not PYPY:
-    tests_require += ['meinheld', 'greenlet']
+    tests_require += ['meinheld', 'greenlet', 'bjoern']
 
 if sys.version_info[0] == 2:
     tests_require += ['PasteDeploy', 'Paste', 'unittest2', 'ws4py']
     if not PYPY:
         tests_require += ['gevent', 'gevent-websocket', 'eventlet',
-                          'gevent-socketio', 'bjoern']
+                          'gevent-socketio']
 
 setup(name='chaussette',
       version=__version__,
